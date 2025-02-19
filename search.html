@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Twrist</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      background-color: #f7f7f7;
+      padding: 0 20px;
+    }
+
+    .search-container {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      max-width: 600px;
+      border: 2px solid #ddd;
+      padding: 5px;
+      background-color: #fff;
+      border-radius: 50px;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .search-input {
+      flex: 1;
+      padding: 10px;
+      border: none;
+      border-radius: 25px;
+      outline: none;
+      font-size: 16px;
+    }
+
+    .search-btn {
+      background-color: #007bff;
+      color: #fff;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 25px;
+      margin-left: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s ease;
+    }
+
+    .search-btn:hover {
+      background-color: #0056b3;
+    }
+
+    .search-container:hover {
+      background-color: #d4e9ff;
+      transform: scale(1.02);
+    }
+  </style>
+</head>
+<body>
+  <div class="search-container">
+    <label for="searchQuery" hidden>Search</label>
+    <input type="text" id="searchQuery" placeholder="Search..." class="search-input" />
+    <button id="searchBtn" class="search-btn">Search</button>
+  </div>
+
+  <script>
+    // Function to handle the search event
+    function search() {
+      const query = document.getElementById("searchQuery").value.trim();
+      if (query) {
+        console.log("Searching for:", query);
+        // Redirect to DuckDuckGo in the same tab
+        window.location.href = `https://duckduckgo.com/?q=${encodeURIComponent(query)}`;
+      }
+    }
+
+    // Trigger search on button click
+    document.getElementById("searchBtn").addEventListener("click", search);
+
+    // Trigger search on pressing 'Enter' in the input field
+    document.getElementById("searchQuery").addEventListener("keydown", function(event) {
+      if (event.key === "Enter") {
+        event.preventDefault();
+        search();
+      }
+    });
+  </script>
+</body>
+</html>
